@@ -1,6 +1,7 @@
 #!/usr/bin/env sh
 
 # erzeugt Donnerstag, 03. Dezember 2020 18:37 (C) 2020 von Leander Jedamus
+# modifiziert Donnerstag, 10. Dezember 2020 15:40 von Leander Jedamus
 # modifiziert Freitag, 04. Dezember 2020 18:45 von Leander Jedamus
 # modifiziert Donnerstag, 03. Dezember 2020 20:11 von Leander Jedamus
 
@@ -113,9 +114,8 @@ myperl=$projekte/perl/myperl
 python=$projekte/python
 zlogin=$HOME/.zlogin
 
-cd $dotfiles
-cp -vp .[a-zA-Z0-9_]* $HOME
-cp -Rvp .byobu .tmux .tmuxinator $HOME
+cd $dotfiles/files
+cp -Rvp .[a-zA-Z0-9_]* $HOME
 echo ""
 
 cd $myperl/a2ps
