@@ -1,12 +1,12 @@
 #!/usr/bin/env sh
 
 # erzeugt Donnerstag, 03. Dezember 2020 18:37 (C) 2020 von Leander Jedamus
-# modifiziert Donnerstag, 10. Dezember 2020 15:40 von Leander Jedamus
+# modifiziert Donnerstag, 10. Dezember 2020 15:45 von Leander Jedamus
 # modifiziert Freitag, 04. Dezember 2020 18:45 von Leander Jedamus
 # modifiziert Donnerstag, 03. Dezember 2020 20:11 von Leander Jedamus
 
 # debug-mode:
-HOME="$HOME/repositories"
+## HOME="$HOME/repositories"
 
 # modify this to reflect your printers!
 printers="laserjet duplex"
