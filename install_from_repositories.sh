@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 # erzeugt Donnerstag, 03. Dezember 2020 18:37 (C) 2020 von Leander Jedamus
-# modifiziert Donnerstag, 10. Dezember 2020 15:45 von Leander Jedamus
+# modifiziert Donnerstag, 10. Dezember 2020 17:36 von Leander Jedamus
 # modifiziert Freitag, 04. Dezember 2020 18:45 von Leander Jedamus
 # modifiziert Donnerstag, 03. Dezember 2020 20:11 von Leander Jedamus
 
@@ -83,6 +83,9 @@ perl=$HOME/Projekte/perl
 bin=$HOME/bin
 
 mkdir -p $bin
+
+cd $HOME/Projekte/git
+sh install_linux.sh
 
 cd $HOME/Projekte/shell
 cp -vp *.sh *.zsh *.modify_me $bin
