@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 # erzeugt Donnerstag, 03. Dezember 2020 18:37 (C) 2020 von Leander Jedamus
-# modifiziert Montag, 14. Dezember 2020 23:28 von Leander Jedamus
+# modifiziert Montag, 14. Dezember 2020 23:33 von Leander Jedamus
 # modifiziert Freitag, 11. Dezember 2020 09:33 von Leander Jedamus
 # modifiziert Donnerstag, 10. Dezember 2020 16:28 von Leander Jedamus
 # modifiziert Freitag, 04. Dezember 2020 18:45 von Leander Jedamus
@@ -146,21 +146,20 @@ cd $python/download-sortierer
 sh ./install.sh
 echo ""
 
-mkdir -p $my_print
-
 modify_desktop_file download-sortierer.desktop $autostart/download-sortierer.desktop
-
-echo "All PDF files, which are COPIED into these subdrectories of ~/print,\nare printed on the corresponding printer and then DELETED!\n\nAlle PDF-Dateien, die in Unterverzeichnisse von ~/print/ KOPIERT werden,\nwerden auf dem ensprechenden Drucker ausgedruckt und anschließend GELÖSCHT!" > $my_print/README.IMPORTANT\!
 
 echo "#echo \"ich bin $zlogin\"\n" > $zlogin
 
 # für jeden Druckereintrag ein Verzeichnis anlegen und in .zlogin eintragen:
+mkdir -p $my_print
 for i in $printers; do
   echo "creating dir for printer $i"
   mkdir -p $my_print/$i
   echo "echo -n \"active-print.py -P $i: \"" >> $zlogin
   echo "~/bin/active-print.py -P $i 2> /dev/null &" >> $zlogin
 done
+
+echo "All PDF files, which are COPIED into these subdrectories of ~/print,\nare printed on the corresponding printer and then DELETED!\n\nAlle PDF-Dateien, die in Unterverzeichnisse von ~/print/ KOPIERT werden,\nwerden auf dem ensprechenden Drucker ausgedruckt und anschließend GELÖSCHT!" > $my_print/README.IMPORTANT\!
 
 cd $python/active-print
 sh ./install.sh
