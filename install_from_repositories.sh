@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 # erzeugt Donnerstag, 03. Dezember 2020 18:37 (C) 2020 von Leander Jedamus
-# modifiziert Montag, 14. Dezember 2020 23:08 von Leander Jedamus
+# modifiziert Montag, 14. Dezember 2020 23:28 von Leander Jedamus
 # modifiziert Freitag, 11. Dezember 2020 09:33 von Leander Jedamus
 # modifiziert Donnerstag, 10. Dezember 2020 16:28 von Leander Jedamus
 # modifiziert Freitag, 04. Dezember 2020 18:45 von Leander Jedamus
@@ -145,6 +145,8 @@ mkdir -p $autostart
 cd $python/download-sortierer
 sh ./install.sh
 echo ""
+
+mkdir -p $my_print
 
 modify_desktop_file download-sortierer.desktop $autostart/download-sortierer.desktop
 
