@@ -1,7 +1,9 @@
 #!/usr/bin/env sh
 
 # erzeugt Donnerstag, 03. Dezember 2020 18:37 (C) 2020 von Leander Jedamus
-# modifiziert Donnerstag, 10. Dezember 2020 17:36 von Leander Jedamus
+# modifiziert Montag, 14. Dezember 2020 15:05 von Leander Jedamus
+# modifiziert Freitag, 11. Dezember 2020 09:33 von Leander Jedamus
+# modifiziert Donnerstag, 10. Dezember 2020 16:28 von Leander Jedamus
 # modifiziert Freitag, 04. Dezember 2020 18:45 von Leander Jedamus
 # modifiziert Donnerstag, 03. Dezember 2020 20:11 von Leander Jedamus
 
@@ -25,9 +27,9 @@ clone()
   echo ""
 };# clone
 
-echo "After entering your password, write the following to change the shell:"
-echo "\"/bin/zsh\":"
-chsh
+## echo "After entering your password, write the following to change the shell:"
+## echo "\"/bin/zsh\":"
+## chsh
 
 mkdir -p $HOME
 cd $HOME
@@ -85,29 +87,33 @@ bin=$HOME/bin
 mkdir -p $bin
 
 cd $HOME/Projekte/git
+sh install.sh "Test User" "testuser@example.org"
 sh install_linux.sh
 
 cd $HOME/Projekte/shell
 cp -vp *.sh *.zsh *.modify_me $bin
-
-cd $bin
-ln -sf a2ps.pl a2ps
+echo ""
 
 CH=chmodchown
+echo "modifying ${CH}.modify_me to ${CH}.sh"
 cat ${CH}.modify_me | sed "s/__USER__/${USER}/" > ${CH}.sh
+echo "removing ${CH}.modify_me"
 rm -f ${CH}.modify_me
 chmod +x ${CH}.sh
+echo ""
 
 cd $HOME
-ln -sf .vim/vimrc3 .vimrc
-
 # install zsh
-cp -p .zsh/zshprompt.py $bin
-cp -p .zsh/.zshrc .zsh/.myenv $HOME
+cd .zsh
+sh ./install.sh
+cd ..
+echo ""
 
 # install vim
-cp -p .vim/.exrc $HOME
-#cp -p .vim/.vimrc3 $HOME/.vimrc
+cd .vim
+sh ./install3.sh
+cd ..
+echo ""
 
 # install Projekte
 my_print=$HOME/print
@@ -117,28 +123,19 @@ myperl=$projekte/perl/myperl
 python=$projekte/python
 zlogin=$HOME/.zlogin
 
-cd $dotfiles/files
-cp -Rvp .[a-zA-Z0-9_]* $HOME
+cd $dotfiles
+sh ./install.sh
 echo ""
 
-cd $myperl/a2ps
-cp -Rvp a2ps.pl locale $bin
-
-cd $myperl/myconf
-cp -Rvp myconf.pl $bin
-
-cd $myperl/mycopy
-cp -Rvp mycopy.pl locale $bin
-
-cd $myperl/translate
-cp -vp translate.pl $bin
+cd $myperl
+sh ./install.sh
 echo ""
 
 autostart=$HOME/.config/autostart
 mkdir -p $autostart
 
 cd $python/download-sortierer
-cp -Rvp download-sortierer.py locale $bin
+sh ./install.sh
 echo ""
 
 modify_desktop_file download-sortierer.desktop $autostart/download-sortierer.desktop
@@ -156,13 +153,14 @@ for i in $printers; do
 done
 
 cd $python/active-print
-cp -Rvp active-print.py locale $bin
+sh ./install.sh
 echo ""
+
 for i in $printers; do
   modify_desktop_file active-print.desktop $autostart/active-print-$i.desktop $i
 done
-
 echo ""
+
 echo "Now log off completely and re-log in!"
 
 # vim:ai sw=2
