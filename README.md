@@ -7,5 +7,3 @@ My first docker image!
 ```
 docker build -t test ./
 ```
-
-
