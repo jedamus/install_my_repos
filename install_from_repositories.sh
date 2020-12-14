@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 # erzeugt Donnerstag, 03. Dezember 2020 18:37 (C) 2020 von Leander Jedamus
-# modifiziert Montag, 14. Dezember 2020 15:05 von Leander Jedamus
+# modifiziert Montag, 14. Dezember 2020 23:08 von Leander Jedamus
 # modifiziert Freitag, 11. Dezember 2020 09:33 von Leander Jedamus
 # modifiziert Donnerstag, 10. Dezember 2020 16:28 von Leander Jedamus
 # modifiziert Freitag, 04. Dezember 2020 18:45 von Leander Jedamus
@@ -12,6 +12,12 @@
 
 # modify this to reflect your printers!
 printers="laserjet duplex"
+
+if [ -z $1 ];then
+  mode=auto
+else
+  mode=$1
+fi
 
 my_path=`pwd`
 
@@ -27,9 +33,11 @@ clone()
   echo ""
 };# clone
 
-## echo "After entering your password, write the following to change the shell:"
-## echo "\"/bin/zsh\":"
-## chsh
+if [ ! $mode = "auto" ]; then
+  echo "After entering your password, write the following to change the shell:"
+  echo "\"/bin/zsh\":"
+  chsh
+fi
 
 mkdir -p $HOME
 cd $HOME
@@ -38,7 +46,7 @@ clone vim-python .vim
 
 mkdir Projekte
 cd Projekte
-mkdir perl python deb c automake
+mkdir perl python c automake deb docker
 clone mygit git
 clone my_dotfiles dotfiles
 clone qpython-scripts qpython
@@ -76,6 +84,10 @@ cd deb
 clone deb_randomizefile randomizefile
 cd ..
 
+cd docker
+clone install_my_repos install_my_repos
+cd ..
+
 cd ..
 
 # installation-part
@@ -87,19 +99,15 @@ bin=$HOME/bin
 mkdir -p $bin
 
 cd $HOME/Projekte/git
-sh install.sh "Test User" "testuser@example.org"
+if [ ! $mode = "auto" ]; then
+  sh install.sh
+else
+  sh install.sh "Test User" "testuser@example.org"
+fi
 sh install_linux.sh
 
 cd $HOME/Projekte/shell
-cp -vp *.sh *.zsh *.modify_me $bin
-echo ""
-
-CH=chmodchown
-echo "modifying ${CH}.modify_me to ${CH}.sh"
-cat ${CH}.modify_me | sed "s/__USER__/${USER}/" > ${CH}.sh
-echo "removing ${CH}.modify_me"
-rm -f ${CH}.modify_me
-chmod +x ${CH}.sh
+sh ./install.sh
 echo ""
 
 cd $HOME
