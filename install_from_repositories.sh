@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 # erzeugt Donnerstag, 03. Dezember 2020 18:37 (C) 2020 von Leander Jedamus
-# modifiziert Dienstag, 15. Dezember 2020 00:29 von Leander Jedamus
+# modifiziert Dienstag, 15. Dezember 2020 11:40 von Leander Jedamus
 # modifiziert Montag, 14. Dezember 2020 23:33 von Leander Jedamus
 # modifiziert Freitag, 11. Dezember 2020 09:33 von Leander Jedamus
 # modifiziert Donnerstag, 10. Dezember 2020 16:28 von Leander Jedamus
@@ -11,28 +11,22 @@
 # debug-mode:
 ## HOME="$HOME/repositories"
 
-# modify this to reflect your printers!
-printers="laserjet duplex"
+my_path=`pwd`
+
+clone()
+{
+  git clone gitolite3@master:$1 $2
+  ## git clone https://github.com/jedamus/$1.git $2
+  ## git clone https://gitlab.com/jedamus/$1.git $2
+  ## git clone https://bitbucket.org/jedamus/$1.git $2
+  echo ""
+};# clone
 
 if [ -z $1 ];then
   mode=auto
 else
   mode=$1
 fi
-
-my_path=`pwd`
-
-modify_desktop_file()
-{
-  echo "installing $2"
-  cat $1 | sed "s/USER/$USER/g" | sed "s/PRINTER/$3/g" > $2
-};# modify_desktop_file
-
-clone()
-{
-  git clone gitolite3@master:$1 $2
-  echo ""
-};# clone
 
 if [ ! $mode = "auto" ]; then
   echo "After entering your password, write the following to change the shell:"
@@ -125,12 +119,10 @@ cd ..
 echo ""
 
 # install Projekte
-my_print=$HOME/print
 projekte=$HOME/Projekte
 dotfiles=$projekte/dotfiles
 myperl=$projekte/perl/myperl
 python=$projekte/python
-zlogin=$HOME/.zlogin
 
 cd $dotfiles
 sh ./install.sh
@@ -140,36 +132,12 @@ cd $myperl
 sh ./install.sh
 echo ""
 
-autostart=$HOME/.config/autostart
-mkdir -p $autostart
-
 cd $python/download-sortierer
 sh ./install.sh
 echo ""
 
-modify_desktop_file download-sortierer.desktop $autostart/download-sortierer.desktop
-
-echo "#echo \"ich bin $zlogin\"\n" > $zlogin
-
-# für jeden Druckereintrag ein Verzeichnis anlegen und in .zlogin eintragen:
-for i in $printers; do
-  echo "creating dir for printer $i"
-  mkdir -p $my_print/$i
-  echo "echo -n \"active-print.py -P $i: \"" >> $zlogin
-  echo "~/bin/active-print.py -P $i 2> /dev/null &" >> $zlogin
-done
-
-if [ -d $my_print ]; then
-  echo "All PDF files, which are COPIED into these subdrectories of ~/print,\nare printed on the corresponding printer and then DELETED!\n\nAlle PDF-Dateien, die in Unterverzeichnisse von ~/print/ KOPIERT werden,\nwerden auf dem ensprechenden Drucker ausgedruckt und anschließend GELÖSCHT!" > $my_print/README.IMPORTANT\!
-fi
-
 cd $python/active-print
 sh ./install.sh
-echo ""
-
-for i in $printers; do
-  modify_desktop_file active-print.desktop $autostart/active-print-$i.desktop $i
-done
 echo ""
 
 echo "Now log off completely and re-log in!"
