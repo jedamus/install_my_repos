@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 # erzeugt Mittwoch, 16. Dezember 2020 18:57 (C) 2020 von Leander Jedamus
-# modifiziert Mittwoch, 16. Dezember 2020 19:04 von Leander Jedamus
+# modifiziert Mittwoch, 16. Dezember 2020 19:23 von Leander Jedamus
 
 apt update && \
 apt -y dist-upgrade && \
@@ -22,7 +22,7 @@ apt -y install gcc g++ zsh vim git a2ps tmux tmuxinator python python3 \
 	       python-scipy python-subversion-dbg python-sympy \
 	       libpython3-stdlib python3-docker python3-git python3-minimal \
 	       python3-mysqldb python3-pypuppetdb python3-pyqt4 python3-pyqt5 \
-	       python3-smbc
+	       python3-smbc python3-notify2 python3-pyinotify
 
 # vim:ai sw=2
 
