@@ -1,6 +1,7 @@
 #!/usr/bin/env sh
 
 # erzeugt Mittwoch, 16. Dezember 2020 18:57 (C) 2020 von Leander Jedamus
+# modifiziert Mittwoch, 30. Dezember 2020 10:32 von Leander Jedamus
 # modifiziert Donnerstag, 17. Dezember 2020 11:50 von Leander Jedamus
 # modifiziert Mittwoch, 16. Dezember 2020 20:13 von Leander Jedamus
 
@@ -8,7 +9,7 @@ apt update && \
 apt -y dist-upgrade && \
 apt -y install gcc g++ zsh vim git a2ps tmux tmuxinator python python3 \
                open-cobol gfortran gettext perl aptitude noweb cweb-latex flex \
-	       bison docutils-common docutils-doc \
+	       bison docutils-common docutils-doc linux-utils \
 #	       texlive texlive-latex-base texlive-latex-extra \
 #	       texlive-latex-extra-doc texlive-latex-recommended-doc \
 #	       texlive-binaries texlive-lang-german texlive-science \
