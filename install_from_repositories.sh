@@ -18,11 +18,11 @@
 HOME="$HOME/repositories"
 mkdir -p $HOME
 
-name_="Leander Jedamus"
-email_="ljedamus@web.de"
-www_="http://www.ljedamus.de/"
-package_="de.ljedamus"
-printers_="laserjet duplex"
+_name_="Leander Jedamus"
+_email_="ljedamus@web.de"
+_www_="http://www.ljedamus.de/"
+_package_="de.ljedamus"
+_printers_="laserjet duplex"
 
 my_path=`pwd`
 
@@ -60,36 +60,37 @@ echo "System is $machsystem"
 clone()
 {
   ## git clone gitolite3@master:$1 $2
-  git clone https://github.com/jedamus/$1.git $2
+  ## git clone https://github.com/jedamus/$1.git $2
+  git clone git@github.com:/jedamus/$1.git $2
   ## git clone https://gitlab.com/jedamus/$1.git $2
   ## git clone https://bitbucket.org/jedamus/$1.git $2
   echo ""
 };# clone
 
 if [ -z "$1" ];then
-  name="$name_"
-  email="$email_"
-  www="$www_"
-  package="$package_"
-  printers="$printers_"
+  name="$_name_"
+  email="$_email_"
+  www="$_www_"
+  package="$_package_"
+  printers="$_printers_"
 else
   read -p "Enter your printer name(s) delimited by space: " printers
   echo "setting printers to \"$printers\""
   echo ""
 
-  read -p "What is your name ($name_): " name
+  read -p "What is your name ($_name_): " name
   echo "setting your name to \"$name\""
   echo ""
 
-  read -p "What is your email-address ($email_): " email
+  read -p "What is your email-address ($_email_): " email
   echo "setting your email-address to \"$email\""
   echo ""
 
-  read -p "What is your WWW-address ($www_): " www
+  read -p "What is your WWW-address ($_www_): " www
   echo "setting your www-address to \"$www\""
   echo ""
 
-  read -p "What is your Package-string ($package_): " package
+  read -p "What is your Package-string ($_package_): " package
   echo "setting your package-string to \"$package\""
   echo ""
 
